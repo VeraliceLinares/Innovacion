@@ -1,0 +1,19 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+<script type="text/javascript">  $(document).ready(function () {
+        $("input[name='calendario_ejemplo']").mask("99-99-9999"); // mascara del calendario dd/mm/aaaa
+        $("input[name='calendario_ejemplo']").addClass('datetimepicker');
+        $("input[name='calendario_ejemplo']").removeClass('has-error');
+        $("input[name='calendario_ejemplo']").attr('placeholder', 'dd-mm-aaaa');
+        $('input[name="calendario_ejemplo"]').attr('autocomplete', 'off');
+        $("input[name='calendario_ejemplo']").datetimepicker({
+            locale: 'es', // colocar el texto del calendario en espanol
+            useCurrent: false,
+            format: 'DD/MM/YYYY', //formato de fecha
+            maxDate: new Date(),// fecha maxima hoy
+            maxDate: moment().add(5, 'years').toDate(), //fecha maxima los siguientes 5 anios
+            minDate: new Date(), // fecha minima hoy
+            minDate: moment().subtract(20, 'years').toDate(), // fecha minima hace 20 anios
+            daysOfWeekDisabled: [0, 6] //fines de semana deshabilitados
+        });
+    });
+</script>
