@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
+    <title>Formulario de registro</title>
+</head>
+
+<body>
+    <h1>Formulario de registro</h1>
+
+    <form>
+        <label for="dui">DUI:</label>
+        <input type="text" id="dui" name="dui"><br>
+    </form>
+    <script>
+        $(document).ready(function () {
+            //DUI
+            $("input[name='dui']").attr('placeholder', '00000000-0');
+
+            $("input[name='dui']").inputmask({
+                mask: "99999999-9",
+                clearIncomplete: true
+            }); // máscara para DUI
+        });
+    </script>
+</body>
+
+</html>
