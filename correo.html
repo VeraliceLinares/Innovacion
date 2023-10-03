@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
+    <title>Formulario de registro</title>
+</head>
+
+<body>
+    <h1>Formulario de registro</h1>
+
+    <form>
+        <label for="correo">Correo:</label>
+        <input type="text" id="correo" name="correo"><br>
+    </form>
+    <script>
+        $(document).ready(function () {
+            //Correo
+            $("input[name='correo']").attr('type', 'email');
+            $("input[name='correo']").attr('placeholder', 'correo@dominio.com');
+            //$("input[name='correo']").attr("data-inputmask", "'mask': 'correo@email.com','clearIncomplete': true"); //máscara para correo
+            Inputmask().mask(document.getElementsByName("correo"));
+
+        });
+    </script>
+</body>
+
+</html>
