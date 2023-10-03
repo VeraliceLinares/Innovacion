@@ -1,0 +1,21 @@
+<script>
+    // En esta línea se verifica si se ha alcanzado el límite de recargas
+    var reloadCount = sessionStorage.getItem('reloadCount') || 1;
+    if (reloadCount >= 2) {
+        sessionStorage.removeItem('reloadCount');
+        //alert('La página ha sido recargada dos veces.');
+    } else {
+        // En esta línea se incrementa el contador y se recargsa la página
+        sessionStorage.setItem('reloadCount', parseInt(reloadCount) + 1);
+        reloadCount = sessionStorage.getItem('reloadCount');
+        // Aquí se actualiza el valor de reloadCount
+        //alert('Recarga ' + reloadCount);
+        if (reloadCount === '2') {
+            // Aquí se verifica si se ha alcanzado la segunda recarga
+            location.reload(true);
+            // Borrado de cache en la segunda recarga instantanea de la anterior
+        } else {
+            location.reload();
+        }
+    }
+</script>
