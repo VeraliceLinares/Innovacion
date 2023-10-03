@@ -1,0 +1,233 @@
+<!-- con esto creas un nuevo btn para agrear y a la tabla le quitas el btn de eliminar en simple  
+AQUÍ ESTÁN TODOS LOS CÓDIGOS PARA VALIDAR LOS INPUTS Y REQUIREDS PARA LA GRILLA DE DATOS EXTERNOS DE SIMPLE
+
+RECORDAR QUE LA CONFIGURACIÓN DE LA TABLA DEBE DE SER:
+
+ENTRADAS Y SALIDAS COMO ARREGLO NO COMO OBJETOS
+
+QUITAR LOS REQUIREDS DE TODOS LOS CAMPOS
+
+QUITAR TODOS DATE Y NUMERIC DE LA CONFI DE LA TABLA EN SIMPLE
+
+SOLO DEJAR HABILITADO EL CHECKBOX DE SE PUEDE ELIMINAR EN LA CONFI DE LA TABLA EN SIMPLE  
+-->
+<br>
+<button type="button" id="boton2" class="btn btn-outline-primary btn_grid_action"
+    onclick="open_add_modal(419073)">Agregar </button>
+
+<!-- estos estilos sirven para una alerta y el btn  -->
+<style>
+    #boton2 {
+        background-color: #43536C;
+        color: white;
+        border-radius: 2rem;
+    }
+
+    .boton4 {
+        width: 60px;
+        height: 30px;
+        display: inline-block;
+        margin-bottom: 15px;
+        margin-top: 15px;
+        background-color: #43536C;
+        color: white;
+        border-radius: 2rem;
+        padding-bottom: 10px;
+
+    }
+
+    .alert-danger-yellow {
+        background-color: #43536C;
+    }
+</style>
+
+
+<script>
+    window.onload = function () {
+
+        //con este eliminar el btn de eliminar porque no funciona y se ve feo
+        $("[class='btn btn-outline-secondary']").parent().prop("id", "botonEliminar");
+        $("#botonEliminar").prop("hidden", true);
+    }
+
+</script>
+
+<script>
+    //evento click del btn agregar este es el fundamento y base de todo
+    const boton2 = document.getElementById('boton2');
+    boton2.addEventListener('click', function () {
+        // Aquí puedes escribir el código que deseas ejecutar cuando se hace clic en el botón
+
+
+        //este crea un select dentro del modal
+        const input2 = document.getElementsByClassName('modal_input')[1];
+        input2.outerHTML = '<select class="modal_input"><option value="Mililitros">Mililitros</option><option value="Litros">Litros</option><option value="Gramos">Gramos</option><option value="Kilogramos">Kilogramos</option></select>';
+    });
+</script>
+
+<script>
+    const boton3 = document.getElementById('boton2');
+    boton3.addEventListener('click', function () {
+        // Aquí puedes escribir el código que deseas ejecutar cuando se hace clic en el botón
+        //otro ejemplo de select dentro del modal
+        const input3 = document.getElementsByClassName('modal_input')[3];
+        input3.outerHTML = '<select class="modal_input"><option value="Aluminio">Aluminio</option><option value="Cartón">Cartón</option><option value="Durapax">Durapax</option><option value="Hojalata">Hojalata</option><option value="Nylon">Nylon</option><option value="Polietileno">Polietileno</option><option value="Poliestireno">Poliestireno</option><option value="Polipropileno">Polipropileno</option><option value="Polietileno de ad">Polietileno de ad</option><option value="Polietileno de bd">Polietileno de bd</option><option value="Envase pet">Envase pet</option><option value="Vidrio">Vidrio</option><option value="Cloruro de polivinilo (pvc)">Cloruro de polivinilo (pvc)</option></select>';
+
+    });
+</script>
+
+<script>
+    const boton4 = document.getElementById('boton2');
+    boton4.addEventListener('click', function () {
+        //este crea un input que solo admina numero y que sean mayores a cero
+        const inputt = document.getElementsByClassName('modal_input')[0];
+        inputt.type = 'number';
+        inputt.addEventListener('input', function (event) {
+            const inputValue = parseInt(event.target.value);
+            if (isNaN(inputValue) || inputValue <= 0) {
+                event.target.value = '';
+            }
+        });
+
+
+        //este borra los elementos que no deben de estar en caso de que le des a la opcion de volver 
+        var btn = document.getElementById("modal_accept_button_419073");
+
+
+        btn.addEventListener("click", function () {
+            $("button[onclick='deleteRow(event, this)']").html("Borrar");
+            $("input[onclick='selectToDelete(event, this)']").hide();
+            $('input[onclick="selectToDelete(event, this)"]').hide();
+            $("button[onclick='deleteRow(event, this)']").addClass('boton4');
+        });
+
+        //este sirve para poner en el modal la plabra que necesitas poner por defecto dice nuevo registro
+        const titulo = document.getElementById('add_to_table_modal_label_419073');
+        titulo.textContent = 'Registro';
+
+        //con esto le quito el color fmln y le pongo un color mas decente
+        const header = document.querySelector('.modal-header');
+        header.style.backgroundColor = '#43536C';
+
+    });
+</script>
+
+<script>
+    //este sirve para validar que el btn de aceptar no este disponible hasta que todos los campos esten llengos, tenes que poner cada campo que te interese menos los select porque esos simepre iran llenos xd
+    $(document).ready(function () {
+
+        var allFieldsFilled = false;
+
+        setInterval(function () {
+            // Verificar si todos los campos están llenos
+            if ($("input[data-etiqueta='Contenido neto a eliminar']").val().trim().length == 0 ||
+                $("input[data-etiqueta='Marca(s)']").val().trim().length == 0) {
+                $("button[class='btn btn-outline-secondary']").prop("disabled", "disabled"); // Al menos un campo está vacío
+                allFieldsFilled = false;
+            } else {
+                allFieldsFilled = true;
+            }
+
+            // Si todos los campos están llenos, habilitar el botón
+            if (allFieldsFilled) {
+                $("button[class='btn btn-outline-secondary']").prop("disabled", false); // Todos los campos tienen contenido
+            }
+        }, 500);
+
+    });
+
+</script>
+
+<script>
+
+    //ayuda a la estitca de la tabla 
+    $(document).ready(function () {
+        $("button[onclick='deleteRow(event, this)']").addClass('boton4');
+        $("button[onclick='deleteRow(event, this)']").html("Borrar");
+        $("input[onclick='selectToDelete(event, this)']").hide();
+        $('button[onclick="grilla_datos_externos_eliminar(419073)"]').hide();
+    })
+</script>
+<script>
+
+    //esta es una alerta informativa 
+    var nuevoDiv = jQuery('<div>');
+    nuevoDiv.addClass('alert alert-danger');
+    $(".modal-body").before(nuevoDiv);
+    $("div[class='alert alert-danger']").html('<p ><b>Todos los campos son requeridos.</b><br>El botón "Aceptar" se habilitará cuando todos los campos estén llenos.</p>');
+    $("div.alert.alert-danger").addClass("alert-danger-yellow");
+
+</script>
+
+<script>
+    //este elimina la opcion de dar enter mientras el modal esta activo 
+    $(document).ready(function () {
+
+        const boton10 = document.getElementById('boton2');
+        boton10.addEventListener('click', function () {
+            $('.modal-content').keydown(function (event) {
+                if (event.keyCode == 13) {
+                    event.preventDefault();
+                    return false;
+                }
+            });
+        });
+
+        // Código para cerrar la pantalla emergente
+        function cerrarPantallaEmergente() {
+            $('.modal-content').off('keydown');
+        }
+    });
+</script>'
+
+<script>
+    //este hace que un input del modal sea calendario y como es fecha de vigencia solo habilita desde la fecha actual hasta 5 años despues
+    const boton = document.getElementById('boton2');
+    boton.addEventListener('click', function () {
+        const input = document.getElementsByClassName('modal_input')[3];
+        input.type = 'date';
+
+        const fechaActual = new Date().toISOString().slice(0, 10);
+        var fechaMaxima = new Date(fechaActual);
+        fechaMaxima.setFullYear(fechaMaxima.getFullYear() + 5);
+        const fechaMaximaISO = fechaMaxima.toISOString().slice(0, 10);
+
+        input.min = fechaActual;
+        input.max = fechaMaximaISO;
+
+        input.addEventListener('change', function () {
+            if (input.value < fechaActual) {
+                input.value = fechaActual;
+            }
+        });
+    });
+
+</script>
+
+
+<script>
+    //para hacer un input de tipo time
+    const boton = document.getElementById('boton2');
+    boton.addEventListener('click', function () {
+        const input = document.getElementsByClassName('modal_input')[4];
+        input.type = 'time';
+
+
+    });
+
+</script>
+
+<script>
+    const boton40 = document.getElementById('boton2');
+    boton40.addEventListener('click', function () {
+        // Esto crea un input que solo admite letras de la A a la Z
+        const inputt2 = document.getElementsByClassName('modal_input')[0];
+        inputt2.type = 'text';
+        inputt2.addEventListener('input', function (event) {
+            const inputValue = event.target.value;
+            const filteredValue = inputValue.replace(/[^a-zA-Z]/g, ''); // Filtra solo las letras de la A a la Z
+            event.target.value = filteredValue;
+        });
+    });
+
+</script>
