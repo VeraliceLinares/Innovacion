@@ -1,0 +1,21 @@
+<!-- !elminar eventos -->
+<script>
+    $(document).ready(function () {
+
+        // Evita que se pueda pegar valores en el campo
+        $("[name='input_eventos']").on("paste", function (e) {
+            e.preventDefault();
+        });
+        // previene que los usuarios copien los elementos 
+        $("[name='input_eventos']").on("copy", function (e) {
+            e.preventDefault();
+        });
+
+        // Evitar que el menú contextual aparezca al hacer clic derecho en los elementos seleccionados
+        $("[name='input_eventos']").on("contextmenu", function (e) {
+            return false;
+        });
+        // Desactivar el autocompletado en los campos para evitar que el navegador ofrezca sugerencias automáticas
+        $("[name='input_eventos']").attr("autocomplete", "off");
+    });
+</script>
