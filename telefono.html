@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
+    <title>Formulario de registro</title>
+</head>
+
+<body>
+    <h1>Formulario de registro</h1>
+
+    <form>
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono"><br>
+
+        <label for="celular">Teléfono celular:</label>
+        <input type="tel" id="celular" name="celular"><br>
+
+        <label for="fijo">Teléfono fijo:</label>
+        <input type="tel" id="fijo" name="fijo"><br>
+    </form>
+    <script>
+        $(document).ready(function () {
+
+
+            //Teléfono
+            $("input[name='telefono']").attr('placeholder', '(2-7-6)000-0000');
+            $("input[name='telefono']").on('keyup keypress', function () {
+                var tel = $(this).val();
+                if (!/^[267]/.test(tel)) {
+                    $(this).val('');
+                }
+            });
+            //Teléfono celular
+            $("input[name='celular']").attr('placeholder', '(7-6)000-0000');
+            $("input[name='celular']").on('keyup keypress', function () {
+                var tel = $(this).val();
+                if (!/^[67]/.test(tel)) {
+                    $(this).val('');
+                }
+            });
+            //Teléfono fijo
+            $("input[name='fijo']").attr('placeholder', '(2)000-0000');
+            $("input[name='fijo']").on('keyup keypress', function () {
+                var tel = $(this).val();
+                if (!/^[2]/.test(tel)) {
+                    $(this).val('');
+                }
+            });
+
+
+
+
+        });
+    </script>
+</body>
+
+</html>
