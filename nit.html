@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
+    <title>Formulario de registro</title>
+</head>
+
+<body>
+    <h1>Formulario de registro</h1>
+
+    <form>
+        <label for="nit">NIT:</label>
+        <input type="text" id="nit" name="nit"><br>
+    </form>
+    <script>
+        $(document).ready(function () {
+            //NIT
+            $("input[name='nit']").attr('placeholder', '0000-000000-000-0');
+            $("input[name='nit']").inputmask({
+                mask: "9999-999999-999-9",
+                clearIncomplete: true
+            }); // máscara para NIT
+        });
+    </script>
+</body>
+</html>
