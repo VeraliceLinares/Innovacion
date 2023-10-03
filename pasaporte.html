@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
+    <title>Formulario de registro</title>
+</head>
+
+<body>
+    <h1>Formulario de registro</h1>
+
+    <form>
+        <label for="pasaporte">Pasaporte:</label>
+        <input type="text" id="pasaporte" name="pasaporte"><br>
+
+        <label for="residencia">Carnet de residencia:</label>
+        <input type="text" id="residencia" name="residencia"><br>
+    </form>
+    <script>
+        $(document).ready(function () {
+            //Pasaporte
+            $("input[name='pasaporte']").attr('placeholder', 'A00000000');
+            $("input[name='pasaporte']").attr("data-inputmask", "'mask': 'A99999999','clearIncomplete': true"); //máscara para pasaporte, solo modificar A999999 según el requerimiento
+            Inputmask().mask(document.getElementsByName("pasaporte"));
+
+
+            //Carnet de residencia
+            $("input[name='residencia']").attr('placeholder', '0000000');
+            $("input[name='residencia']").attr("data-inputmask", "'mask': '9999999','clearIncomplete': true"); //máscara para carnet de residencia, solo modificar 9999999 según el requerimiento
+            Inputmask().mask(document.getElementsByName("residencia"));
+
+        });
+    </script>
+</body>
+
+</html>
