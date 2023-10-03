@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
+    <title>Formulario de registro</title>
+</head>
+
+<body>
+    <h1>Formulario de registro</h1>
+
+    <form>
+        <label for="numeros">Decimales:</label>
+        <input type="text" id="decimales" name="decimales"><br>
+    </form>
+    <script>
+        $(document).ready(function () {
+            $("<div id='val'></div>").insertAfter(".validacion");
+
+            $("input[name='decimales']").on("input", function () {
+                // Reemplazar cualquier caracter que no sea un número o un punto decimal con una cadena vacía
+                this.value = this.value.replace(/[^0-9.]/g, "");
+
+                // Reemplazar múltiples puntos decimales con uno solo
+                this.value = this.value.replace(/(\..*)\./g, '$1');
+
+                // Si el valor es negativo, establecerlo como 0
+                if (parseFloat(this.value) < 0) {
+                    this.value = '0';
+                }
+
+                // Dividir el valor en parte entera y parte decimal
+                var parts = this.value.split('.');
+                if (parts.length > 1) {
+                    // Tomar solo los primeros dos dígitos después del punto decimal
+                    parts[1] = parts[1].substring(0, 2);
+                    // Unir las partes de nuevo
+                    this.value = parts.join('.');
+                }
+            });
+
+        });
+    </script>
+</body>
+
+</html>
